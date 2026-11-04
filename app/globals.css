@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* Layout idea: a printed research note. Narrow reading column, thin rules,
+   figures set in a monospace with tabular numerals, one navy accent. */
+
+@theme {
+  --color-paper: #fbfaf7;
+  --color-surface: #ffffff;
+  --color-tint: #f3f1ec;
+  --color-ink: #14181f;
+  --color-body: #2c333d;
+  --color-muted: #5d6672;
+  --color-rule: #e2ded6;
+  --color-navy: #1f4e79;
+  --color-navy-deep: #0f2c47;
+  --color-navy-soft: #e8eef5;
+  --color-gold: #9a7431;
+  --color-gold-soft: #f4ecdc;
+  --color-green: #00704a;
+  --color-green-soft: #e3f0ea;
+  --color-red: #a33a2c;
+
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-body);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-navy);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--color-navy-soft);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  background: var(--color-navy);
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  border-radius: 3px;
+}
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+/* Gentle entrance for the hero only. Content is fully visible if animation does not run. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.rise {
+  animation: rise 0.5s ease-out both;
+}
+.rise-2 {
+  animation: rise 0.5s ease-out 0.08s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise, .rise-2 { animation: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+
+/* Mobile menu built on <details>, so it works without JavaScript */
+details.menu > summary { list-style: none; cursor: pointer; }
+details.menu > summary::-webkit-details-marker { display: none; }
+
+@media print {
+  header, footer, .no-print { display: none !important; }
+  body { background: #fff; }
+}
