@@ -58,7 +58,8 @@ npm run build      # static export into ./out
 ### Option B — new project
 1. Create a new GitHub repository and upload this folder (without `node_modules`, `.next`, `out`).
 2. On vercel.com: **Add New → Project**, import the repository. Set Output Directory to `out` and click **Deploy**.
-3. If the address changes, update the link on your CV and LinkedIn, and `SITE_URL` in `data/personal.ts`.
+.
+4. If the address changes, update the link on your CV and LinkedIn, and `SITE_URL` in `data/personal.ts`.
 
 ## Notes
 - The Excel files open best in Microsoft Excel (the Starbucks scenario table uses an Excel data table).
